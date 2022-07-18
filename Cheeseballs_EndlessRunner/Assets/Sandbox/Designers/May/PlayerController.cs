@@ -72,9 +72,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void PressingJump(bool x)
+    public void PressingJump()
     {
         // Public function so that the bool can be changed in unity button UI
-        pressingJump = x;
+        pressingJump = !pressingJump;
     }
 }
