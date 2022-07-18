@@ -11,6 +11,8 @@ Cheeseballs_EndlessRunner/[Ll]ogs/
 Cheeseballs_EndlessRunner/[Mm]emoryCaptures/
 Cheeseballs_EndlessRunner/[Uu]serSettings/
 
+Cheeseballs_EndlessRunner/ProjectSettings/EditorSettings.asset/
+
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
 
@@ -60,4 +62,3 @@ sysinfo.txt
 crashlytics-build.properties
 
 *EditorBuildSettings.asset
-*EditorSettings.asset
