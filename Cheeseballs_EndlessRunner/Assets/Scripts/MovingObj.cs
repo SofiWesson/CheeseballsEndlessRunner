@@ -13,12 +13,12 @@ public class MovingObj : MonoBehaviour
 
     private float m_tValue = 0;
 
-    void Update()
+    private void Update()
     {
         if (m_tValue < 1)
             m_tValue += Time.fixedDeltaTime * speed;
         else if (m_tValue >= 1)
-            m_tValue = 0;
+            Destroy(gameObject);
 
         transform.position = Vector3.Lerp(m_spawnPosition, m_deSpawnPosition, m_tValue);
     }
