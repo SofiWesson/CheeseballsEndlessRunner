@@ -22,6 +22,10 @@ public class GameManager : MonoBehaviour
         if (gameActive)
         {
             UpdateTimer();
+            if (gameTime > bestTime)
+            {
+                bestTimeObject.SetActive(false);
+            }
         }
 
         /*if (Input.GetKeyDown("e"))
