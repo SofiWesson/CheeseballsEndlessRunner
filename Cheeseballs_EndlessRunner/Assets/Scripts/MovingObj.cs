@@ -6,6 +6,8 @@ public class MovingObj : MonoBehaviour
 {
     // public 
     public float speed = 1;
+    public float length = 0;
+    public float height = 0;
 
     // private
     private Vector3 m_spawnPosition;
