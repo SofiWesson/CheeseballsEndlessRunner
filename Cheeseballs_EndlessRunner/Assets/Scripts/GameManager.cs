@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     {
         if (gameActive)
         {
-            //UpdateTimer();
+            UpdateTimer();
         }
     }
 
@@ -29,27 +29,17 @@ public class GameManager : MonoBehaviour
         gameActive = true;
     }
 
-    /*private void UpdateTimer()
+    private void UpdateTimer()
     {
-        gameTime = gameTime <= 100 ? gameTime + Time.deltaTime : 0;
-        int milliseconds = (int)gameTime; 
-        //int millisecondstens = Mathf.FloorToInt(gameTime * 100 % 100 / 10);
-        int seconds =  //Mathf.FloorToInt(gameTime % 60 % 10);
+        gameTime += Time.deltaTime;
 
-        int minutes = Mathf.FloorToInt(gameTime / 60);
-        int secondstens = Mathf.FloorToInt(gameTime % 60 / 10);
+        // This calculation is split in two, because for some reason, doing them in one line creates miscalculations, but separately it's fine
+        int fraction = Mathf.FloorToInt(gameTime * 100);
+        fraction %= 100;
 
-        timerText.text = "Time: " + minutes + ":" + secondstens + seconds + ":" + milliseconds;
+        int seconds = (int)gameTime % 60;
+        int minutes = (int)gameTime / 60;
+
+        timerText.text = "Time: " + minutes + ":" + seconds.ToString("00") + ":" + fraction.ToString("00");
     }
-
-    string FormatTime(float time)
-    {
-        int intTime = (int)time;
-        int tempName = intTime / 60;
-        int seconds = intTime % 60;
-        float fraction = time * 1000;
-        fraction = (fraction % 1000);
-        string timeText = String.Format("{0:00}:{1:00}:{2:000}", tempName, seconds, fraction);
-        return timeText;
-    }*/
 }
