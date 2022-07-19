@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     // Variables that need assigning
     public CharacterController playerCharacterController;
     public FeetCollider playerFeet;
-    public GameObject runningMesh, slidingMesh;
+    public Animator characterAnimator;
 
     // Variables that need adjusting
     public float jumpPower = 5;
@@ -16,9 +16,10 @@ public class PlayerController : MonoBehaviour
     public float minimumSlideTime = 0.2f;
     public float maximumSlideTime = 1;
     public float slideDelayTime = 0.5f;
+    public float jumpDelayTime = 0.5f;
 
     // Private Variables
-    [SerializeField] private float ySpeed, stepOffset, jumpTime, slideTime, slideDelay;
+    [SerializeField] private float ySpeed, stepOffset, jumpTime, slideTime, slideDelay, jumpDelay;
     [SerializeField] private bool isGrounded, isFalling, pressingJump, pressingSlide, isSliding;
 
     // Start is called before the first frame update
@@ -38,11 +39,11 @@ public class PlayerController : MonoBehaviour
             Sliding();
         }
         // Begins sliding if player presses slide and delay for standing is finished
-        else if (pressingSlide && slideDelay == 0 && ySpeed == 0)
+        else if (pressingSlide && slideDelay == 0 && ySpeed == 0 && jumpDelay == 0)
         {
             Slide();
         }
-        // decreases slide delay if necessary. Idk what the efficient way to do this is, I'm a designer
+        // decreases slide and jump delay if necessary. Idk what the efficient way to do this is, I'm a designer
         if (slideDelay > 0)
         {
             slideDelay -= Time.fixedDeltaTime;
@@ -51,6 +52,17 @@ public class PlayerController : MonoBehaviour
                 slideDelay = 0;
             }
         }
+        if (jumpDelay > 0)
+        {
+            jumpDelay -= Time.fixedDeltaTime;
+            if (jumpDelay < 0)
+            {
+                jumpDelay = 0;
+            }
+        }
+
+        characterAnimator.SetBool("isGrounded", isGrounded);
+        characterAnimator.SetBool("isSliding", isSliding);
     }
     void Movement()
     {
@@ -63,8 +75,14 @@ public class PlayerController : MonoBehaviour
         isGrounded = playerFeet.isGrounded;
 
         // Checks if the player can jump
-        if (pressingJump && !isFalling && !isSliding)
+        if (pressingJump && !isFalling && !isSliding && jumpDelay == 0 && slideDelay == 0)
         {
+            if (ySpeed == 0)
+            {
+                // Begins jumping animation for the character
+                characterAnimator.SetTrigger("jump");
+            }
+
             // Starts the jump and prevents stepping
             ySpeed = jumpPower;
             playerCharacterController.stepOffset = 0;
@@ -91,6 +109,7 @@ public class PlayerController : MonoBehaviour
             playerCharacterController.stepOffset = stepOffset;
             jumpTime = 0;
             isFalling = false;
+            jumpDelay = jumpDelayTime;
         }
     }
 
@@ -111,9 +130,9 @@ public class PlayerController : MonoBehaviour
 
     private void Slide()
     {
+        characterAnimator.SetTrigger("slide");
+
         // Turns on crouch mesh and adjusts hitbox
-        runningMesh.SetActive(false);
-        slidingMesh.SetActive(true);
         playerCharacterController.height = 1;
         playerCharacterController.center = new Vector3(0, -0.5f, 0);
 
@@ -124,8 +143,6 @@ public class PlayerController : MonoBehaviour
     private void Stand()
     {
         // Turns on running mesh and adjusts hitbox
-        runningMesh.SetActive(true);
-        slidingMesh.SetActive(false);
         playerCharacterController.height = 2;
         playerCharacterController.center = Vector3.zero;
 
