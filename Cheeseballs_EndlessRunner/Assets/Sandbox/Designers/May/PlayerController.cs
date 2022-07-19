@@ -7,15 +7,19 @@ public class PlayerController : MonoBehaviour
     // Variables that need assigning
     public CharacterController playerCharacterController;
     public FeetCollider playerFeet;
+    public GameObject runningMesh, slidingMesh;
 
     // Variables that need adjusting
     public float jumpPower = 2;
     public float fallSpeed = 5;
     public float jumpHoldTime = 1;
+    public float minimumSlideTime = 0.2f;
+    public float maximumSlideTime = 1;
+    public float slideDelayTime = 0.5f;
 
     // Private Variables
-    [SerializeField] private float ySpeed, stepOffset, timeFromJump;
-    [SerializeField] private bool isGrounded, pressingJump, falling;
+    [SerializeField] private float ySpeed, stepOffset, timeFromJump, slideTime, slideDelay;
+    [SerializeField] private bool isGrounded, falling, pressingJump, pressingSlide, pressedSlide, sliding;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +33,28 @@ public class PlayerController : MonoBehaviour
     {
         VerticalMovement();
         Movement();
+        if (sliding)
+        {
+            Sliding();
+        }
+        // Begins sliding if player presses slide and delay for standing is finished
+        else if (pressedSlide && slideDelay == 0)
+        {
+            Slide();
+        }
+        if (pressedSlide)
+        {
+            pressedSlide = false;
+        }
+        // decreases slide delay if necessary. Idk what the efficient way to do this is, I'm a designer
+        if (slideDelay > 0)
+        {
+            slideDelay -= Time.fixedDeltaTime;
+            if (slideDelay < 0)
+            {
+                slideDelay = 0;
+            }
+        }
     }
     void Movement()
     {
@@ -72,9 +98,59 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void Sliding()
+    {
+        slideTime += Time.fixedDeltaTime;
+        // will not make the player stand up until they slide for a minimum amount of time
+        if (slideTime < minimumSlideTime)
+        {
+            return;
+        }
+        // If player lets go of slide button, or they have been sliding for too long, they stand up
+        else if (!pressingSlide || slideTime >= maximumSlideTime)
+        {
+            Stand();
+        }
+    }
+
+    private void Slide()
+    {
+        // Turns on crouch mesh and adjusts hitbox
+        runningMesh.SetActive(false);
+        slidingMesh.SetActive(true);
+        playerCharacterController.height = 1;
+        playerCharacterController.center = new Vector3(0, -0.5f, 0);
+
+        sliding = true;
+        slideTime += Time.fixedDeltaTime;
+    }
+
+    private void Stand()
+    {
+        // Turns on running mesh and adjusts hitbox
+        runningMesh.SetActive(true);
+        slidingMesh.SetActive(false);
+        playerCharacterController.height = 2;
+        playerCharacterController.center = Vector3.zero;
+
+        sliding = false;
+        slideTime = 0;
+        slideDelay = slideDelayTime;
+    }
+
     public void PressingJump()
     {
         // Public function so that the bool can be changed in unity button UI
         pressingJump = !pressingJump;
+    }
+
+    public void PressingSlide()
+    {
+        // Public function so that the bool can be changed in unity button UI
+        pressingSlide = !pressingSlide;
+        if (pressingSlide)
+        {
+            pressedSlide = true;
+        }
     }
 }
