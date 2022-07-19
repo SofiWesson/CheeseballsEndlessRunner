@@ -30,12 +30,35 @@ public class ObjHandler : MonoBehaviour
     private List<Transform> m_backgroundObjects = new List<Transform>();
     private List<Transform> m_foregroundObjects = new List<Transform>();
 
-    // ================================== ARRAYS ==================================
+    // ================================== ROOMS ==================================
+    // public
+    // 1 story
+    public static GameObject H1S_Hall;
+    public static GameObject H1S_InDoor;
+    public static GameObject H1S_InWin;
+    // story changers
+    public static GameObject H1S_To2S;
+    public static GameObject H2S_To1S;
+    // 2 story
+    public static GameObject H2S_Hall;
+    public static GameObject H2S_InDoor;
+    public static GameObject H2S_InWin;
+
+    // private
+    // 1 story
+    private static GameObject[] H1S_Hall_Connectors = { H1S_Hall, H1S_To2S };
+    private static GameObject[] H1S_InDoor_Connectors = { H1S_Hall, H1S_To2S };
+    private static GameObject[] H1S_InWin_Connectors = { H1S_Hall, H1S_To2S };
+    // story changes
+    private static GameObject[] H1S_To2S_Connectors = { H2S_Hall, H2S_To1S };
+    private static GameObject[] H2S_To1S_Connectors = { H1S_Hall, H1S_To2S };
+    // 2 story
+    private static GameObject[] H2S_Hall_Connectors = { H2S_Hall, H2S_To1S };
+    private static GameObject[] H2S_InDoor_Connectors = { H2S_Hall, H2S_To1S };
+    private static GameObject[] H2S_InWin_Connectors = { H2S_Hall, H2S_To1S };
 
     // TODO
     // each piece needs a list of other pieces that can go after it 
-
-
 
     // Update is called once per frame
     void FixedUpdate()
