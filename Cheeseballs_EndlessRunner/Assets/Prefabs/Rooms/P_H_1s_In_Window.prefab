@@ -47,6 +47,11 @@ MonoBehaviour:
   speed: 0.1
   length: 6.13
   height: 3.45
+  compatibleRooms:
+  - {fileID: 2772959341784641111, guid: 4303372122734804cb05177d69767711, type: 3}
+  - {fileID: 2772959341784641111, guid: 1463ba77a33e77344ab74c8f3534e69e, type: 3}
+  - {fileID: 6433039474200708957, guid: d6ad1d718d036614593cad3a22c0746a, type: 3}
+  - {fileID: 4510212621210761196}
 --- !u!1001 &8541572243013314234
 PrefabInstance:
   m_ObjectHideFlags: 0

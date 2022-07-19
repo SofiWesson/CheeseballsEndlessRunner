@@ -6,8 +6,8 @@ public class MovingObj : MonoBehaviour
 {
     // public 
     public float speed = 1;
-    public float length = 0;
-    public float height = 0;
+    public bool isOneStory = true;
+    public List<GameObject> compatibleRooms = new List<GameObject>();
 
     // private
     private Vector3 m_spawnPosition;
