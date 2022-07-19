@@ -10,16 +10,16 @@ public class PlayerController : MonoBehaviour
     public GameObject runningMesh, slidingMesh;
 
     // Variables that need adjusting
-    public float jumpPower = 2;
-    public float fallSpeed = 5;
-    public float jumpHoldTime = 1;
+    public float jumpPower = 5;
+    public float fallSpeed = 20;
+    public float jumpHoldTime = 0.3f;
     public float minimumSlideTime = 0.2f;
     public float maximumSlideTime = 1;
     public float slideDelayTime = 0.5f;
 
     // Private Variables
-    [SerializeField] private float ySpeed, stepOffset, timeFromJump, slideTime, slideDelay;
-    [SerializeField] private bool isGrounded, falling, pressingJump, pressingSlide, pressedSlide, sliding;
+    [SerializeField] private float ySpeed, stepOffset, jumpTime, slideTime, slideDelay;
+    [SerializeField] private bool isGrounded, isFalling, pressingJump, pressingSlide, isSliding;
 
     // Start is called before the first frame update
     void Start()
@@ -33,18 +33,14 @@ public class PlayerController : MonoBehaviour
     {
         VerticalMovement();
         Movement();
-        if (sliding)
+        if (isSliding)
         {
             Sliding();
         }
         // Begins sliding if player presses slide and delay for standing is finished
-        else if (pressedSlide && slideDelay == 0)
+        else if (pressingSlide && slideDelay == 0 && ySpeed == 0)
         {
             Slide();
-        }
-        if (pressedSlide)
-        {
-            pressedSlide = false;
         }
         // decreases slide delay if necessary. Idk what the efficient way to do this is, I'm a designer
         if (slideDelay > 0)
@@ -67,7 +63,7 @@ public class PlayerController : MonoBehaviour
         isGrounded = playerFeet.isGrounded;
 
         // Checks if the player can jump
-        if (pressingJump && !falling)
+        if (pressingJump && !isFalling && !isSliding)
         {
             // Starts the jump and prevents stepping
             ySpeed = jumpPower;
@@ -76,11 +72,11 @@ public class PlayerController : MonoBehaviour
 
         if (isGrounded == false)
         {
-            timeFromJump += Time.fixedDeltaTime;
+            jumpTime += Time.fixedDeltaTime;
             // Checks if player is not holding jump or has held jump for too long
-            if (!pressingJump || timeFromJump >= jumpHoldTime)
+            if (!pressingJump || jumpTime >= jumpHoldTime)
             {
-                falling = true;
+                isFalling = true;
                 // Makes the player fall and prevents stepping
                 ySpeed -= fallSpeed * Time.fixedDeltaTime;
                 playerCharacterController.stepOffset = 0;
@@ -93,8 +89,8 @@ public class PlayerController : MonoBehaviour
             // Removes falling speed and enables stepping
             ySpeed = 0;
             playerCharacterController.stepOffset = stepOffset;
-            timeFromJump = 0;
-            falling = false;
+            jumpTime = 0;
+            isFalling = false;
         }
     }
 
@@ -121,7 +117,7 @@ public class PlayerController : MonoBehaviour
         playerCharacterController.height = 1;
         playerCharacterController.center = new Vector3(0, -0.5f, 0);
 
-        sliding = true;
+        isSliding = true;
         slideTime += Time.fixedDeltaTime;
     }
 
@@ -133,7 +129,7 @@ public class PlayerController : MonoBehaviour
         playerCharacterController.height = 2;
         playerCharacterController.center = Vector3.zero;
 
-        sliding = false;
+        isSliding = false;
         slideTime = 0;
         slideDelay = slideDelayTime;
     }
@@ -148,9 +144,5 @@ public class PlayerController : MonoBehaviour
     {
         // Public function so that the bool can be changed in unity button UI
         pressingSlide = !pressingSlide;
-        if (pressingSlide)
-        {
-            pressedSlide = true;
-        }
     }
 }
