@@ -19,11 +19,6 @@ public class ObjHandler : MonoBehaviour
     public Transform spawnLocation;
     public Transform spawnNextIndicator;
     public Transform deSpawnLocation;
-    
-    // private
-    private float m_timer = 0;
-    [SerializeField] private float m_backgroundSpawnTime = 1;
-    [SerializeField] private float m_foregroundSpawnTime = 5; // 0.2725
 
     private GameObject m_objSpawnNext;
 
@@ -34,10 +29,6 @@ public class ObjHandler : MonoBehaviour
     [Space(10)]
     [Header("Scrolling")]
     public float speed = 1;
-
-    // private
-    private List<Transform> m_backgroundObjects = new List<Transform>();
-    private List<Transform> m_foregroundObjects = new List<Transform>();
 
     // ================================== ROOMS ==================================
 
