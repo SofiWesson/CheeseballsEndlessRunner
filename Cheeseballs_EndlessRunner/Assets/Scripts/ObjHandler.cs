@@ -26,12 +26,17 @@ public class ObjHandler : MonoBehaviour
     // public
     public float speed = 1;
 
-    private float m_tValue = 0;
-
     // private
-    private List<Transform> m_BGObjsBackLog = new List<Transform>(); // backlog of objs to add to main list once its not being used
     private List<Transform> m_backgroundObjects = new List<Transform>();
-    
+    private List<Transform> m_foregroundObjects = new List<Transform>();
+
+    // ================================== ARRAYS ==================================
+
+    // TODO
+    // each piece needs a list of other pieces that can go after it 
+
+
+
     // Update is called once per frame
     void FixedUpdate()
     {

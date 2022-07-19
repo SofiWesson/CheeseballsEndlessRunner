@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 172013637}
   - component: {fileID: 172013636}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: temp floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -464,6 +464,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 4224775980693526046, guid: c8e27608c1d484b4c9e778668bfab313, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8e27608c1d484b4c9e778668bfab313, type: 3}
 --- !u!1 &1063645822
@@ -732,6 +736,10 @@ PrefabInstance:
     - target: {fileID: 4208556329690478902, guid: 76648b432d194b742bd0b904104a1d5a, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4208556329690478902, guid: 76648b432d194b742bd0b904104a1d5a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4208556329690478924, guid: 76648b432d194b742bd0b904104a1d5a, type: 3}
       propertyPath: m_RootOrder
