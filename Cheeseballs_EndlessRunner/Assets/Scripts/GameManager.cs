@@ -29,6 +29,12 @@ public class GameManager : MonoBehaviour
         gameActive = true;
     }
 
+    public void EndGame()
+    {
+        gameActive = false;
+        // Functionality here :P
+    }
+
     private void UpdateTimer()
     {
         gameTime += Time.deltaTime;
