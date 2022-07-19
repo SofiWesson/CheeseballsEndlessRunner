@@ -45,8 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.1
-  length: 6.13
-  height: 3.45
+  isOneStory: 1
   compatibleRooms:
   - {fileID: 2772959341784641111, guid: 4303372122734804cb05177d69767711, type: 3}
   - {fileID: 2772959341784641111, guid: 1463ba77a33e77344ab74c8f3534e69e, type: 3}
@@ -81,7 +80,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ca91a3b0c9d5a20458a4ace92733ead5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.72
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ca91a3b0c9d5a20458a4ace92733ead5, type: 3}
       propertyPath: m_LocalPosition.z

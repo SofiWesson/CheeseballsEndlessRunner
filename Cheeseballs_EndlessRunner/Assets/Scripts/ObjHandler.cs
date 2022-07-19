@@ -41,21 +41,9 @@ public class ObjHandler : MonoBehaviour
 
     // ================================== ROOMS ==================================
 
-    // private
-    // 1 story
-    // private GameObject[] H1S_Hall_Connectors = { H1S_Hall, H1S_To2S };
-    // private GameObject[] H1S_InDoor_Connectors = { H1S_Hall, H1S_To2S };
-    // private GameObject[] H1S_InWin_Connectors = { H1S_Hall, H1S_To2S };
-    // // story changes
-    // private GameObject[] H1S_To2S_Connectors = { H2S_Hall, H2S_To1S };
-    // private GameObject[] H2S_To1S_Connectors = { H1S_Hall, H1S_To2S };
-    // // 2 story
-    // private GameObject[] H2S_Hall_Connectors = { H2S_Hall, H2S_To1S };
-    // private GameObject[] H2S_InDoor_Connectors = { H2S_Hall, H2S_To1S };
-    // private GameObject[] H2S_InWin_Connectors = { H2S_Hall, H2S_To1S };
-
-    // TODO
-    // each piece needs a list of other pieces that can go after it 
+    // camera heights:
+    // 1 level - 2
+    // 2 levels - 3.65
 
     private void Start()
     {
@@ -78,7 +66,6 @@ public class ObjHandler : MonoBehaviour
         GameObject go = Instantiate(a_go);
         MovingObj moving = go.GetComponent<MovingObj>();
         moving.transform.position = spawnLocation.position; // set position to right side of screen
-        // TODO change y so rooms are correctly lined up
         //moving.transform.position = Vector3.up * (moving.isOneStory ? 3.45f / 2.0f : 6.71f / 2.0f); // 3.45 6.71
         moving.SetStartAndEndPosition(spawnLocation.position, deSpawnLocation.position);
         m_objSpawnNext = go;
