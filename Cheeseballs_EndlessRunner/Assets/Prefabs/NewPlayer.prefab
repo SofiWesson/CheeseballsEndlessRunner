@@ -480,7 +480,7 @@ MonoBehaviour:
   playerCharacterController: {fileID: 4599361854445722577}
   playerFeet: {fileID: 4599361854259400815}
   runningMesh: {fileID: 4599361853439505069}
-  slidingMesh: {fileID: 0}
+  slidingMesh: {fileID: 4599361854240147560}
   jumpPower: 5
   fallSpeed: 20
   jumpHoldTime: 0.3
