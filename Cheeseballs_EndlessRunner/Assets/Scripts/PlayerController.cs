@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public CharacterController playerCharacterController;
     public FeetCollider playerFeet;
     public Animator characterAnimator;
+    public GameManager gameManager;
 
     // Variables that need adjusting
     public float jumpPower = 5;
@@ -172,5 +173,13 @@ public class PlayerController : MonoBehaviour
     public void ReleasingSlide()
     {
         pressingSlide = false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Trigger")
+        {
+            gameManager.EndGame();
+        }
     }
 }
