@@ -46,13 +46,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 160a9cefa27774c4c9c3edba39ab6078, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.1
   isOneStory: 1
   compatibleRooms:
   - {fileID: 2772959341784641111, guid: 894d2afb42f306e40a6b7282f1e984c3, type: 3}
   - {fileID: 2772959341784641111, guid: baab2307664768849bdb3040b173396b, type: 3}
   - {fileID: 4510212621210761196, guid: 5df5e3c82865c9145bf806fbe2d9c17d, type: 3}
   - {fileID: 2772959341784641111, guid: 7b68e69d8b24d9e4e88200ba7af22f9b, type: 3}
+  compatibleObstacles: []
 --- !u!1 &6242390307869926878
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,6 +204,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6442298374534657108, guid: 67f5873d5c80de64cb01cb100b6889da, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 896ae57ac3009a94da533926d186878f, type: 2}
+    - target: {fileID: -4509823143501964880, guid: 67f5873d5c80de64cb01cb100b6889da, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 896ae57ac3009a94da533926d186878f, type: 2}
     - target: {fileID: 919132149155446097, guid: 67f5873d5c80de64cb01cb100b6889da, type: 3}
       propertyPath: m_Name
       value: House_1s_To_2s

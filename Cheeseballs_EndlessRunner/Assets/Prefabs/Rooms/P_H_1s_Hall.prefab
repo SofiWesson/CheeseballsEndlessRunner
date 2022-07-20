@@ -45,13 +45,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 160a9cefa27774c4c9c3edba39ab6078, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.1
   isOneStory: 1
   compatibleRooms:
   - {fileID: 2772959341784641111}
   - {fileID: 2772959341784641111, guid: 1463ba77a33e77344ab74c8f3534e69e, type: 3}
   - {fileID: 6433039474200708957, guid: d6ad1d718d036614593cad3a22c0746a, type: 3}
   - {fileID: 4510212621210761196, guid: 3fde93d34f7a9a0499c86625638a7c06, type: 3}
+  compatibleObstacles: []
 --- !u!1 &8831568255784663436
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,6 +173,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 8fbd21dd96456fb46abb069379d1d206, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 29b5d48ef52a38b48b3acafe4e8396a1, type: 2}
     - target: {fileID: 919132149155446097, guid: 8fbd21dd96456fb46abb069379d1d206, type: 3}
       propertyPath: m_Name
       value: House_1s_Hall
