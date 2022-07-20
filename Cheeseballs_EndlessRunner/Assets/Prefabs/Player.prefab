@@ -307,8 +307,8 @@ MonoBehaviour:
   jumpHoldTime: 0.3
   minimumSlideTime: 0.2
   maximumSlideTime: 1
-  slideDelayTime: 0.5
-  jumpDelayTime: 0.3
+  slideDelayTime: 0.4
+  jumpDelayTime: 0.15
   ySpeed: 0
   stepOffset: 0
   jumpTime: 0
