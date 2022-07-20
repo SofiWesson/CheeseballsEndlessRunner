@@ -19,7 +19,7 @@ public class MovingObj : MonoBehaviour
     private void Update()
     {
         if (m_tValue < 1)
-            m_tValue += Time.fixedDeltaTime * speed;
+            m_tValue += Time.deltaTime * speed;
         else if (m_tValue >= 1)
             Destroy(gameObject);
 
