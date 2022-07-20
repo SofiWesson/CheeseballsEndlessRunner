@@ -30,6 +30,7 @@ Transform:
   m_Children:
   - {fileID: 6059388181815044805}
   - {fileID: 1942222534202249909}
+  - {fileID: 1429784551732415229}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -52,6 +53,50 @@ MonoBehaviour:
   - {fileID: 2772959341784641111, guid: 7b68e69d8b24d9e4e88200ba7af22f9b, type: 3}
   - {fileID: 2772959341784641111, guid: baab2307664768849bdb3040b173396b, type: 3}
   compatibleObstacles: []
+--- !u!1 &5341330313181488744
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1429784551732415229}
+  - component: {fileID: 1272406830467558428}
+  m_Layer: 0
+  m_Name: Triggers
+  m_TagString: Trigger
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1429784551732415229
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5341330313181488744}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.04, y: 3.372, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8916215276414440020}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1272406830467558428
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5341330313181488744}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.13, y: 0.1, z: 3.45}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7155685428090653750
 GameObject:
   m_ObjectHideFlags: 0
