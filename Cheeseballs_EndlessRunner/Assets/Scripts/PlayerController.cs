@@ -155,12 +155,22 @@ public class PlayerController : MonoBehaviour
     public void PressingJump()
     {
         // Public function so that the bool can be changed in unity button UI
-        pressingJump = !pressingJump;
+        pressingJump = true;
     }
+
+    public void ReleasingJump()
+    {
+        pressingJump = false;
+    }    
 
     public void PressingSlide()
     {
         // Public function so that the bool can be changed in unity button UI
-        pressingSlide = !pressingSlide;
+        pressingSlide = true;
+    }
+
+    public void ReleasingSlide()
+    {
+        pressingSlide = false;
     }
 }
