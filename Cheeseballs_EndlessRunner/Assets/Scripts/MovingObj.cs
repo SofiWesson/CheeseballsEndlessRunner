@@ -5,11 +5,12 @@ using UnityEngine;
 public class MovingObj : MonoBehaviour
 {
     // public 
-    public float speed = 1;
     public bool isOneStory = true;
     public List<GameObject> compatibleRooms = new List<GameObject>();
+    public List<GameObject> compatibleObstacles = new List<GameObject>();
 
     // private
+    private float speed = 0.1f;
     private Vector3 m_spawnPosition;
     private Vector3 m_deSpawnPosition;
 
@@ -29,5 +30,10 @@ public class MovingObj : MonoBehaviour
     {
         m_spawnPosition = a_spawnPosition;
         m_deSpawnPosition = a_deSpawnPosition;
+    }
+
+    public void SetSpeed(float a_speed)
+    {
+        speed = a_speed;
     }
 }
