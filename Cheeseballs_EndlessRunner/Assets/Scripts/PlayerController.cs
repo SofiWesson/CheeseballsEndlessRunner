@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     public float jumpDelayTime = 0.5f;
 
     // Private Variables
-    [SerializeField] private float ySpeed, stepOffset, jumpTime, slideTime, slideDelay, jumpDelay;
+    [SerializeField] private float ySpeed, stepOffset, jumpTime, slideTime, slideDelay, jumpDelay, playerHeight;
     [SerializeField] private bool isGrounded, isFalling, pressingJump, pressingSlide, isSliding;
 
     // Start is called before the first frame update
@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     {
         // Sets the step off set to what it is set in Unity
         stepOffset = playerCharacterController.stepOffset;
+        playerHeight = playerCharacterController.height;
     }
 
     // Update is called once per frame
@@ -133,7 +134,7 @@ public class PlayerController : MonoBehaviour
         characterAnimator.SetTrigger("slide");
 
         // Turns on crouch mesh and adjusts hitbox
-        playerCharacterController.height = 1;
+        playerCharacterController.height = playerHeight / 2;
         playerCharacterController.center = new Vector3(0, -0.5f, 0);
 
         isSliding = true;
@@ -143,7 +144,7 @@ public class PlayerController : MonoBehaviour
     private void Stand()
     {
         // Turns on running mesh and adjusts hitbox
-        playerCharacterController.height = 2;
+        playerCharacterController.height = playerHeight;
         playerCharacterController.center = Vector3.zero;
 
         isSliding = false;
