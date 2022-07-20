@@ -8,9 +8,11 @@ public class ObjHandler : MonoBehaviour
     //public
     [Header("General")]
     public GameObject startingRoom;
+    public GameObject hallRoom;
     public float speed = 0.1f;
 
     // private
+    private bool isGamePlaying = false;
 
     // ================================== SPAWNING ==================================
     // public
@@ -32,13 +34,6 @@ public class ObjHandler : MonoBehaviour
     private void Start()
     {
         m_objSpawnNext = SpawnObject(startingRoom);
-
-        MovingObj obj = startingRoom.GetComponent<MovingObj>();
-        if (obj.compatibleObstacles.Count == 0)
-            return;
-
-        m_objSpawnNextObstacle = obj.compatibleObstacles[Random.Range(0, obj.compatibleObstacles.Count)]; // gets random obstacle layout for room
-        m_objSpawnNextObstacle = SpawnObject(m_objSpawnNextObstacle);
     }
 
     // Update is called once per frame
@@ -46,20 +41,28 @@ public class ObjHandler : MonoBehaviour
     {
         if (m_objSpawnNext.transform.position.x < spawnNextIndicator.position.x)
         {
-            // room
-            MovingObj obj = m_objSpawnNext.GetComponent<MovingObj>();
-            if (obj.compatibleRooms.Count == 0)
-                return;
+            if (!isGamePlaying)
+            {
+                m_objSpawnNext = hallRoom;
+                m_objSpawnNext = SpawnObject(m_objSpawnNext);
+            }
+            else
+            {
+                // room
+                MovingObj obj = m_objSpawnNext.GetComponent<MovingObj>();
+                if (obj.compatibleRooms.Count == 0)
+                    return;
 
-            m_objSpawnNext = obj.compatibleRooms[Random.Range(0, obj.compatibleRooms.Count)]; // gets random object from list of possible objects
-            m_objSpawnNext = SpawnObject(m_objSpawnNext);
+                m_objSpawnNext = obj.compatibleRooms[Random.Range(0, obj.compatibleRooms.Count)]; // gets random object from list of possible objects
+                m_objSpawnNext = SpawnObject(m_objSpawnNext);
 
-            // obstacles
-            if (obj.compatibleObstacles.Count == 0)
-                return;
+                // obstacles
+                if (obj.compatibleObstacles.Count == 0)
+                    return;
 
-            m_objSpawnNextObstacle = obj.compatibleObstacles[Random.Range(0, obj.compatibleObstacles.Count)]; // gets random obstacle layout for room
-            m_objSpawnNextObstacle = SpawnObject(m_objSpawnNextObstacle);
+                m_objSpawnNextObstacle = obj.compatibleObstacles[Random.Range(0, obj.compatibleObstacles.Count)]; // gets random obstacle layout for room
+                m_objSpawnNextObstacle = SpawnObject(m_objSpawnNextObstacle);
+            }
         }
     }
 
@@ -71,5 +74,10 @@ public class ObjHandler : MonoBehaviour
         moving.SetSpeed(speed);
         moving.SetStartAndEndPosition(spawnLocation.position, deSpawnLocation.position);
         return go;
+    }
+
+    public void PlayGame()
+    {
+        isGamePlaying = true;
     }
 }

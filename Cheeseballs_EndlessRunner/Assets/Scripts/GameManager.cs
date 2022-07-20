@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public Text timerText, bestTimeText;
     public GameObject titleScreen, jumpButton, slideButton, timerDisplay, deathScreen, bestTimeObject;
+    public ObjHandler objHandler;
     public bool gameActive;
     [SerializeField] private float gameTime, bestTime;
 
@@ -42,6 +43,7 @@ public class GameManager : MonoBehaviour
         jumpButton.SetActive(true);
         slideButton.SetActive(true);
         timerDisplay.SetActive(true);
+        objHandler.PlayGame();
     }
 
     public void EndGame()
