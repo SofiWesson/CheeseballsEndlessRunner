@@ -7,7 +7,6 @@ public class ObjHandler : MonoBehaviour
     // ================================== GENERAL ==================================
     //public
     [Header("General")]
-    public GameObject startingRoom;
     public GameObject hallRoom;
     public float speed = 0.1f;
 
@@ -33,7 +32,7 @@ public class ObjHandler : MonoBehaviour
 
     private void Start()
     {
-        m_objSpawnNext = SpawnObject(startingRoom);
+        m_objSpawnNext = SpawnObject(hallRoom);
     }
 
     // Update is called once per frame
