@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public PlayerController playerController;
     public Text timerText, bestTimeText;
     public GameObject titleScreen, jumpButton, slideButton, timerDisplay, deathScreen, bestTimeObject;
     public ObjHandler objHandler;
@@ -53,6 +54,9 @@ public class GameManager : MonoBehaviour
         jumpButton.SetActive(false);
         slideButton.SetActive(false);
         deathScreen.SetActive(true);
+
+        playerController.ReleasingJump();
+        playerController.ReleasingSlide();
     }
 
     public void RestartGame()
