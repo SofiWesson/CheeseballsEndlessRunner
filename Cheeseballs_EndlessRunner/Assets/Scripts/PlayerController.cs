@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
             if (slideDelay < 0)
             {
                 slideDelay = 0;
+                StandHitbox();
             }
         }
         if (jumpDelay > 0)
@@ -144,13 +145,16 @@ public class PlayerController : MonoBehaviour
 
     private void Stand()
     {
-        // Turns on running mesh and adjusts hitbox
-        playerCharacterController.height = playerHeight;
-        playerCharacterController.center = Vector3.zero;
-
         isSliding = false;
         slideTime = 0;
         slideDelay = slideDelayTime;
+    }
+
+    private void StandHitbox()
+    {
+        // Adjusts Hitbox
+        playerCharacterController.height = playerHeight;
+        playerCharacterController.center = Vector3.zero;
     }
 
     public void PressingJump()
