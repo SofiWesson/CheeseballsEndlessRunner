@@ -422,7 +422,10 @@ MonoBehaviour:
   playerFeet: {fileID: 4599361854259400815}
   characterAnimator: {fileID: 7159173292460203865}
   gameManager: {fileID: 0}
-  jumpPower: 5
+  jumpImage: {fileID: 0}
+  slideImage: {fileID: 0}
+  pcScene: 0
+  jumpPower: 8
   fallSpeed: 20
   jumpHoldTime: 0.3
   minimumSlideTime: 0.2

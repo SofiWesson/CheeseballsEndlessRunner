@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public Text timerText, bestTimeText;
     public GameObject titleScreen, jumpButton, slideButton, timerDisplay, deathScreen, bestTimeObject;
     public ObjHandler objHandler;
-    public bool gameActive;
+    public bool gameActive, pcBuild;
     [SerializeField] private float gameTime, bestTime;
 
     // Start is called before the first frame update
@@ -21,6 +21,27 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Added pc controls for starting game
+        if (pcBuild)
+        {
+            if (!gameActive && Input.GetKeyDown(KeyCode.Space))
+            {
+                if (titleScreen.activeSelf == true)
+                {
+                    StartGame();
+                }
+                else if (deathScreen.activeSelf == true)
+                {
+                    RestartGame();
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Application.Quit();
+            }
+        }
+
+
         if (gameActive)
         {
             UpdateTimer();

@@ -9,8 +9,10 @@ public class PlayerController : MonoBehaviour
     public FeetCollider playerFeet;
     public Animator characterAnimator;
     public GameManager gameManager;
+    public GameObject jumpImage, slideImage;
 
     // Variables that need adjusting
+    public bool pcScene;
     public float jumpPower = 5;
     public float fallSpeed = 20;
     public float jumpHoldTime = 0.3f;
@@ -34,6 +36,12 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        // Added pc controls section
+        if (pcScene)
+        {
+            PcControls();
+        }
+
         VerticalMovement();
         Movement();
         if (isSliding)
@@ -184,6 +192,29 @@ public class PlayerController : MonoBehaviour
         if (other.tag == "Trigger")
         {
             gameManager.EndGame();
+        }
+    }
+
+    private void PcControls()
+    {
+        if (Input.GetKey("w"))
+        {
+            PressingJump();
+            jumpImage.SetActive(false);
+        }
+        else
+        {
+            ReleasingJump();
+        }
+
+        if (Input.GetKey("s"))
+        {
+            PressingSlide();
+            slideImage.SetActive(false);
+        }
+        else
+        {
+            ReleasingSlide();
         }
     }
 }
